@@ -2,6 +2,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as eks from "@pulumi/eks";
 import * as awsx from "@pulumi/awsx";
 import * as k8s from "@pulumi/kubernetes";
+import { LocalChartOpts } from "@pulumi/kubernetes/helm/v2";
 
 const name = "k8s-nodejs";
 
@@ -17,4 +18,14 @@ const cluster = new eks.Cluster(name, {
 });
 
 // Export the clusters' kubeconfig.
-export const kubeconfig = cluster.kubeconfig
+export const kubeconfig = cluster.kubeconfig;
+
+const localChartOpts: LocalChartOpts = {
+    path: '../coffee-api-helm'
+};
+
+const coffeeApi = new k8s.helm.v2.Chart('coffee-api', localChartOpts, {
+    providers: {
+        kubernetes: cluster.provider
+    }
+});
