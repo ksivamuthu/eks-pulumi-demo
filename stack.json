@@ -1,0 +1,1007 @@
+{
+    "version": 3,
+    "deployment": {
+        "manifest": {
+            "time": "2019-06-30T19:40:56.786755-04:00",
+            "magic": "1b7a05a9ab30f17b27a079ae9c410b548f2ccc0c4f3eace22c42b8f9649842c6",
+            "version": "v0.17.16"
+        },
+        "secrets_providers": {
+            "type": "service",
+            "state": {
+                "url": "https://api.pulumi.com",
+                "owner": "ksivamuthu",
+                "project": "aws-eks-pulumi",
+                "stack": "dev"
+            }
+        },
+        "resources": [
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::pulumi:pulumi:Stack::aws-eks-pulumi-dev",
+                "custom": false,
+                "type": "pulumi:pulumi:Stack"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default",
+                "custom": true,
+                "id": "8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "type": "pulumi:providers:aws",
+                "inputs": {
+                    "region": "us-east-1",
+                    "version": "0.18.13"
+                },
+                "outputs": {
+                    "region": "us-east-1",
+                    "version": "0.18.13"
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::kubernetes:helm.sh/v2:Chart::node-red",
+                "custom": false,
+                "type": "kubernetes:helm.sh/v2:Chart",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::pulumi:pulumi:Stack::aws-eks-pulumi-dev"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc::VPC",
+                "custom": false,
+                "type": "awsx:x:ec2:Vpc",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::pulumi:pulumi:Stack::aws-eks-pulumi-dev"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "custom": false,
+                "type": "eks:index:Cluster",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::pulumi:pulumi:Stack::aws-eks-pulumi-dev"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC",
+                "custom": true,
+                "id": "vpc-07f649c2d2fb5497f",
+                "type": "aws:ec2/vpc:Vpc",
+                "inputs": {
+                    "__defaults": [],
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "10.0.0.0/16",
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "instanceTenancy": "default"
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:495775103319:vpc/vpc-07f649c2d2fb5497f",
+                    "assignGeneratedIpv6CidrBlock": false,
+                    "cidrBlock": "10.0.0.0/16",
+                    "defaultNetworkAclId": "acl-0189d12c7d3d609e9",
+                    "defaultRouteTableId": "rtb-013e49f1c8bb03ac8",
+                    "defaultSecurityGroupId": "sg-04e687b6ca8c73102",
+                    "dhcpOptionsId": "dopt-a7e7eadc",
+                    "enableClassiclink": false,
+                    "enableClassiclinkDnsSupport": false,
+                    "enableDnsHostnames": true,
+                    "enableDnsSupport": true,
+                    "id": "vpc-07f649c2d2fb5497f",
+                    "instanceTenancy": "default",
+                    "ipv6AssociationId": "",
+                    "ipv6CidrBlock": "",
+                    "mainRouteTableId": "rtb-013e49f1c8bb03ac8",
+                    "ownerId": "495775103319",
+                    "tags": {}
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::pulumi:pulumi:Stack::aws-eks-pulumi-dev",
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "assignGeneratedIpv6CidrBlock": null,
+                    "cidrBlock": null,
+                    "enableDnsHostnames": null,
+                    "enableDnsSupport": null,
+                    "instanceTenancy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-0",
+                "custom": false,
+                "type": "awsx:x:ec2:Subnet",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc::VPC"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway::VPC",
+                "custom": false,
+                "type": "awsx:x:ec2:InternetGateway",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc::VPC"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-1",
+                "custom": false,
+                "type": "awsx:x:ec2:Subnet",
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc::VPC"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-eksRole",
+                "custom": false,
+                "type": "eks:index:ServiceRole",
+                "outputs": {
+                    "role": "smart-iot-eksRole-role-620151c"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-instanceRole",
+                "custom": false,
+                "type": "eks:index:ServiceRole",
+                "outputs": {
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:pulumi-nodejs::default",
+                "custom": true,
+                "id": "bf9c0888-769d-4b75-bbf7-89bd502089e8",
+                "type": "pulumi:providers:pulumi-nodejs"
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-eksClusterSecurityGroup",
+                "custom": true,
+                "id": "sg-02b28f9cc9d6a0550",
+                "type": "aws:ec2/securityGroup:SecurityGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name"
+                    ],
+                    "description": "Managed by Pulumi",
+                    "name": "smart-iot-eksClusterSecurityGroup-7cf1a96",
+                    "revokeRulesOnDelete": true,
+                    "tags": {
+                        "Name": "smart-iot-eksClusterSecurityGroup",
+                        "__defaults": []
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:495775103319:security-group/sg-02b28f9cc9d6a0550",
+                    "description": "Managed by Pulumi",
+                    "egress": [],
+                    "id": "sg-02b28f9cc9d6a0550",
+                    "ingress": [],
+                    "name": "smart-iot-eksClusterSecurityGroup-7cf1a96",
+                    "ownerId": "495775103319",
+                    "revokeRulesOnDelete": true,
+                    "tags": {
+                        "Name": "smart-iot-eksClusterSecurityGroup"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "description": null,
+                    "revokeRulesOnDelete": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-0",
+                "custom": true,
+                "id": "subnet-03a56485d1dc776a1",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1a",
+                    "cidrBlock": "10.0.0.0/17",
+                    "mapPublicIpOnLaunch": true,
+                    "tags": {
+                        "Name": "VPC-public-0",
+                        "__defaults": [],
+                        "type": "public"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:495775103319:subnet/subnet-03a56485d1dc776a1",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1a",
+                    "availabilityZoneId": "use1-az2",
+                    "cidrBlock": "10.0.0.0/17",
+                    "id": "subnet-03a56485d1dc776a1",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "mapPublicIpOnLaunch": true,
+                    "ownerId": "495775103319",
+                    "tags": {
+                        "Name": "VPC-public-0",
+                        "type": "public"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-0",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "assignIpv6AddressOnCreation": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ],
+                    "availabilityZone": null,
+                    "cidrBlock": null,
+                    "mapPublicIpOnLaunch": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-0",
+                "custom": true,
+                "id": "rtb-0fc897304063d0d67",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "id": "rtb-0fc897304063d0d67",
+                    "ownerId": "495775103319",
+                    "propagatingVgws": [],
+                    "routes": [],
+                    "tags": {},
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-0",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$pulumi-nodejs:dynamic:Resource::smart-iot-cfnStackName",
+                "custom": true,
+                "id": "smart-iot-cfnStackName",
+                "type": "pulumi-nodejs:dynamic:Resource",
+                "inputs": {
+                    "__provider": "exports.handler = __f0;\n\nvar __provider = {check: __f1, diff: __f2, create: __f3, update: __f5, read: __f6, delete: __f7};\n\nfunction __f1(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (olds, news) =\u003e Promise.resolve({ inputs: news, failedChecks: [] });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2(__0, __1, __2) {\n  return (function() {\n    with({  }) {\n\nreturn (id, olds, news) =\u003e Promise.resolve({});\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f4(__0) {\n  return (function() {\n    with({ crypto: require(\"crypto\") }) {\n\nreturn n =\u003e `${n}-${crypto.randomBytes(4).toString(\"hex\")}`;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f3(__0) {\n  return (function() {\n    with({ name: \"smart-iot-cfnStackName\", func: __f4 }) {\n\nreturn (inputs) =\u003e Promise.resolve({\n                id: name,\n                outs: { output: func(inputs.input) },\n            });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f5(__0, __1, __2) {\n  return (function() {\n    with({ func: __f4 }) {\n\nreturn (id, olds, news) =\u003e Promise.resolve({\n                outs: { output: func(news.input) },\n            });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f6(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (id, state) =\u003e Promise.resolve({ id: id, props: state });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f7(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (id, props) =\u003e Promise.resolve();\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0() {\n  return (function() {\n    with({ provider: __provider }) {\n\nreturn () =\u003e provider;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n",
+                    "input": "smart-iot"
+                },
+                "outputs": {
+                    "__provider": "exports.handler = __f0;\n\nvar __provider = {check: __f1, diff: __f2, create: __f3, update: __f5, read: __f6, delete: __f7};\n\nfunction __f1(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (olds, news) =\u003e Promise.resolve({ inputs: news, failedChecks: [] });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f2(__0, __1, __2) {\n  return (function() {\n    with({  }) {\n\nreturn (id, olds, news) =\u003e Promise.resolve({});\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f4(__0) {\n  return (function() {\n    with({ crypto: require(\"crypto\") }) {\n\nreturn n =\u003e `${n}-${crypto.randomBytes(4).toString(\"hex\")}`;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f3(__0) {\n  return (function() {\n    with({ name: \"smart-iot-cfnStackName\", func: __f4 }) {\n\nreturn (inputs) =\u003e Promise.resolve({\n                id: name,\n                outs: { output: func(inputs.input) },\n            });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f5(__0, __1, __2) {\n  return (function() {\n    with({ func: __f4 }) {\n\nreturn (id, olds, news) =\u003e Promise.resolve({\n                outs: { output: func(news.input) },\n            });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f6(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (id, state) =\u003e Promise.resolve({ id: id, props: state });\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f7(__0, __1) {\n  return (function() {\n    with({  }) {\n\nreturn (id, props) =\u003e Promise.resolve();\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n\nfunction __f0() {\n  return (function() {\n    with({ provider: __provider }) {\n\nreturn () =\u003e provider;\n\n    }\n  }).apply(undefined, undefined).apply(this, arguments);\n}\n",
+                    "output": "smart-iot-e24a1554"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:pulumi-nodejs::default::bf9c0888-769d-4b75-bbf7-89bd502089e8",
+                "propertyDependencies": {
+                    "__provider": null,
+                    "input": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway$aws:ec2/internetGateway:InternetGateway::VPC",
+                "custom": true,
+                "id": "igw-0d35280d0b387021c",
+                "type": "aws:ec2/internetGateway:InternetGateway",
+                "inputs": {
+                    "__defaults": [],
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "id": "igw-0d35280d0b387021c",
+                    "ownerId": "495775103319",
+                    "tags": {},
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway::VPC",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-1",
+                "custom": true,
+                "id": "rtb-0da86f4486d82db2a",
+                "type": "aws:ec2/routeTable:RouteTable",
+                "inputs": {
+                    "__defaults": [],
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "id": "rtb-0da86f4486d82db2a",
+                    "ownerId": "495775103319",
+                    "propagatingVgws": [],
+                    "routes": [],
+                    "tags": {},
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-1",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-1",
+                "custom": true,
+                "id": "subnet-081edf27e9ddc3cc1",
+                "type": "aws:ec2/subnet:Subnet",
+                "inputs": {
+                    "__defaults": [],
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1b",
+                    "cidrBlock": "10.0.128.0/17",
+                    "mapPublicIpOnLaunch": true,
+                    "tags": {
+                        "Name": "VPC-public-1",
+                        "__defaults": [],
+                        "type": "public"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":1200000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:495775103319:subnet/subnet-081edf27e9ddc3cc1",
+                    "assignIpv6AddressOnCreation": false,
+                    "availabilityZone": "us-east-1b",
+                    "availabilityZoneId": "use1-az4",
+                    "cidrBlock": "10.0.128.0/17",
+                    "id": "subnet-081edf27e9ddc3cc1",
+                    "ipv6CidrBlock": "",
+                    "ipv6CidrBlockAssociationId": "",
+                    "mapPublicIpOnLaunch": true,
+                    "ownerId": "495775103319",
+                    "tags": {
+                        "Name": "VPC-public-1",
+                        "type": "public"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-1",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "assignIpv6AddressOnCreation": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ],
+                    "availabilityZone": null,
+                    "cidrBlock": null,
+                    "mapPublicIpOnLaunch": null,
+                    "tags": null,
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role",
+                "custom": true,
+                "id": "smart-iot-eksRole-role-620151c",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"sts:AssumeRole\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":[\"eks.amazonaws.com\"]}}]}",
+                    "description": "Allows EKS to manage clusters on your behalf.",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "smart-iot-eksRole-role-620151c",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::495775103319:role/smart-iot-eksRole-role-620151c",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"eks.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2019-06-30T23:30:26Z",
+                    "description": "Allows EKS to manage clusters on your behalf.",
+                    "forceDetachPolicies": false,
+                    "id": "smart-iot-eksRole-role-620151c",
+                    "maxSessionDuration": 3600,
+                    "name": "smart-iot-eksRole-role-620151c",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROAXG3T7XFLYNPJABXDC"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-eksRole",
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null,
+                    "description": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role",
+                "custom": true,
+                "id": "smart-iot-instanceRole-role-01ff4e4",
+                "type": "aws:iam/role:Role",
+                "inputs": {
+                    "__defaults": [
+                        "forceDetachPolicies",
+                        "maxSessionDuration",
+                        "name",
+                        "path"
+                    ],
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":[\"sts:AssumeRole\"],\"Effect\":\"Allow\",\"Principal\":{\"Service\":[\"ec2.amazonaws.com\"]}}]}",
+                    "forceDetachPolicies": false,
+                    "maxSessionDuration": 3600,
+                    "name": "smart-iot-instanceRole-role-01ff4e4",
+                    "path": "/"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::495775103319:role/smart-iot-instanceRole-role-01ff4e4",
+                    "assumeRolePolicy": "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.amazonaws.com\"},\"Action\":\"sts:AssumeRole\"}]}",
+                    "createDate": "2019-06-30T23:30:26Z",
+                    "description": "",
+                    "forceDetachPolicies": false,
+                    "id": "smart-iot-instanceRole-role-01ff4e4",
+                    "maxSessionDuration": 3600,
+                    "name": "smart-iot-instanceRole-role-01ff4e4",
+                    "path": "/",
+                    "tags": {},
+                    "uniqueId": "AROAXG3T7XFL6MXGTJORA"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-instanceRole",
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "assumeRolePolicy": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroupRule:SecurityGroupRule::smart-iot-eksClusterInternetEgressRule",
+                "custom": true,
+                "id": "sgrule-2817813012",
+                "type": "aws:ec2/securityGroupRule:SecurityGroupRule",
+                "inputs": {
+                    "__defaults": [
+                        "self"
+                    ],
+                    "cidrBlocks": [
+                        "0.0.0.0/0"
+                    ],
+                    "description": "Allow internet access.",
+                    "fromPort": 0,
+                    "protocol": "-1",
+                    "securityGroupId": "sg-02b28f9cc9d6a0550",
+                    "self": false,
+                    "toPort": 0,
+                    "type": "egress"
+                },
+                "outputs": {
+                    "__meta": "{\"schema_version\":\"2\"}",
+                    "cidrBlocks": [
+                        "0.0.0.0/0"
+                    ],
+                    "description": "Allow internet access.",
+                    "fromPort": 0,
+                    "id": "sgrule-2817813012",
+                    "protocol": "-1",
+                    "securityGroupId": "sg-02b28f9cc9d6a0550",
+                    "self": false,
+                    "toPort": 0,
+                    "type": "egress"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-eksClusterSecurityGroup"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "cidrBlocks": null,
+                    "description": null,
+                    "fromPort": null,
+                    "protocol": null,
+                    "securityGroupId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-eksClusterSecurityGroup"
+                    ],
+                    "toPort": null,
+                    "type": null
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-0",
+                "custom": true,
+                "id": "rtbassoc-06e0fcd7690b87178",
+                "type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
+                "inputs": {
+                    "__defaults": [],
+                    "routeTableId": "rtb-0fc897304063d0d67",
+                    "subnetId": "subnet-03a56485d1dc776a1"
+                },
+                "outputs": {
+                    "id": "rtbassoc-06e0fcd7690b87178",
+                    "routeTableId": "rtb-0fc897304063d0d67",
+                    "subnetId": "subnet-03a56485d1dc776a1"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-0",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-0",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-0"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "routeTableId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-0"
+                    ],
+                    "subnetId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-0"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/route:Route::VPC-public-0-ig",
+                "custom": true,
+                "id": "r-rtb-0fc897304063d0d671080289494",
+                "type": "aws:ec2/route:Route",
+                "inputs": {
+                    "__defaults": [],
+                    "destinationCidrBlock": "0.0.0.0/0",
+                    "gatewayId": "igw-0d35280d0b387021c",
+                    "routeTableId": "rtb-0fc897304063d0d67"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":120000000000,\"delete\":300000000000}}",
+                    "destinationCidrBlock": "0.0.0.0/0",
+                    "destinationPrefixListId": "",
+                    "egressOnlyGatewayId": "",
+                    "gatewayId": "igw-0d35280d0b387021c",
+                    "id": "r-rtb-0fc897304063d0d671080289494",
+                    "instanceId": "",
+                    "instanceOwnerId": "",
+                    "natGatewayId": "",
+                    "networkInterfaceId": "",
+                    "origin": "CreateRoute",
+                    "routeTableId": "rtb-0fc897304063d0d67",
+                    "state": "active",
+                    "transitGatewayId": "",
+                    "vpcPeeringConnectionId": ""
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-0",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway$aws:ec2/internetGateway:InternetGateway::VPC",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-0"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "destinationCidrBlock": null,
+                    "gatewayId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway$aws:ec2/internetGateway:InternetGateway::VPC"
+                    ],
+                    "routeTableId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-0"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-1",
+                "custom": true,
+                "id": "rtbassoc-00a5480d6cfe9e5c9",
+                "type": "aws:ec2/routeTableAssociation:RouteTableAssociation",
+                "inputs": {
+                    "__defaults": [],
+                    "routeTableId": "rtb-0da86f4486d82db2a",
+                    "subnetId": "subnet-081edf27e9ddc3cc1"
+                },
+                "outputs": {
+                    "id": "rtbassoc-00a5480d6cfe9e5c9",
+                    "routeTableId": "rtb-0da86f4486d82db2a",
+                    "subnetId": "subnet-081edf27e9ddc3cc1"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-1",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-1",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-1"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "routeTableId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-1"
+                    ],
+                    "subnetId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-1"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/route:Route::VPC-public-1-ig",
+                "custom": true,
+                "id": "r-rtb-0da86f4486d82db2a1080289494",
+                "type": "aws:ec2/route:Route",
+                "inputs": {
+                    "__defaults": [],
+                    "destinationCidrBlock": "0.0.0.0/0",
+                    "gatewayId": "igw-0d35280d0b387021c",
+                    "routeTableId": "rtb-0da86f4486d82db2a"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":120000000000,\"delete\":300000000000}}",
+                    "destinationCidrBlock": "0.0.0.0/0",
+                    "destinationPrefixListId": "",
+                    "egressOnlyGatewayId": "",
+                    "gatewayId": "igw-0d35280d0b387021c",
+                    "id": "r-rtb-0da86f4486d82db2a1080289494",
+                    "instanceId": "",
+                    "instanceOwnerId": "",
+                    "natGatewayId": "",
+                    "networkInterfaceId": "",
+                    "origin": "CreateRoute",
+                    "routeTableId": "rtb-0da86f4486d82db2a",
+                    "state": "active",
+                    "transitGatewayId": "",
+                    "vpcPeeringConnectionId": ""
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet::VPC-public-1",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway$aws:ec2/internetGateway:InternetGateway::VPC",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-1"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "destinationCidrBlock": null,
+                    "gatewayId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:InternetGateway$aws:ec2/internetGateway:InternetGateway::VPC"
+                    ],
+                    "routeTableId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTable:RouteTable::VPC-public-1"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-90eb1c99",
+                "custom": true,
+                "id": "smart-iot-eksRole-role-620151c-20190630233027867500000005",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+                    "role": "smart-iot-eksRole-role-620151c"
+                },
+                "outputs": {
+                    "id": "smart-iot-eksRole-role-620151c-20190630233027867500000005",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSServicePolicy",
+                    "role": "smart-iot-eksRole-role-620151c"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-eksRole",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-4b490823",
+                "custom": true,
+                "id": "smart-iot-eksRole-role-620151c-20190630233027624300000004",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+                    "role": "smart-iot-eksRole-role-620151c"
+                },
+                "outputs": {
+                    "id": "smart-iot-eksRole-role-620151c-20190630233027624300000004",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy",
+                    "role": "smart-iot-eksRole-role-620151c"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-eksRole",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-03516f97",
+                "custom": true,
+                "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027102300000001",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "outputs": {
+                    "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027102300000001",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-instanceRole",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-e1b295bd",
+                "custom": true,
+                "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027355500000002",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "outputs": {
+                    "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027355500000002",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-instanceRole",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-3eb088f2",
+                "custom": true,
+                "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027446000000003",
+                "type": "aws:iam/rolePolicyAttachment:RolePolicyAttachment",
+                "inputs": {
+                    "__defaults": [],
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "outputs": {
+                    "id": "smart-iot-instanceRole-role-01ff4e4-20190630233027446000000003",
+                    "policyArn": "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole::smart-iot-instanceRole",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "policyArn": null,
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:iam/instanceProfile:InstanceProfile::smart-iot-instanceProfile",
+                "custom": true,
+                "id": "smart-iot-instanceProfile-5d35efa",
+                "type": "aws:iam/instanceProfile:InstanceProfile",
+                "inputs": {
+                    "__defaults": [
+                        "name",
+                        "path"
+                    ],
+                    "name": "smart-iot-instanceProfile-5d35efa",
+                    "path": "/",
+                    "role": "smart-iot-instanceRole-role-01ff4e4"
+                },
+                "outputs": {
+                    "arn": "arn:aws:iam::495775103319:instance-profile/smart-iot-instanceProfile-5d35efa",
+                    "createDate": "2019-06-30T23:30:29Z",
+                    "id": "smart-iot-instanceProfile-5d35efa",
+                    "name": "smart-iot-instanceProfile-5d35efa",
+                    "path": "/",
+                    "role": "smart-iot-instanceRole-role-01ff4e4",
+                    "roles": [],
+                    "uniqueId": "AIPAXG3T7XFL4IOKKID5H"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-03516f97",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-3eb088f2",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-e1b295bd"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "role": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-instanceRole-role",
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-03516f97",
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-e1b295bd",
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-instanceRole-3eb088f2"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:eks/cluster:Cluster::smart-iot-eksCluster",
+                "custom": true,
+                "id": "smart-iot-eksCluster-9d70383",
+                "type": "aws:eks/cluster:Cluster",
+                "inputs": {
+                    "__defaults": [
+                        "name"
+                    ],
+                    "name": "smart-iot-eksCluster-9d70383",
+                    "roleArn": "arn:aws:iam::495775103319:role/smart-iot-eksRole-role-620151c",
+                    "vpcConfig": {
+                        "__defaults": [
+                            "endpointPrivateAccess",
+                            "endpointPublicAccess"
+                        ],
+                        "endpointPrivateAccess": false,
+                        "endpointPublicAccess": true,
+                        "securityGroupIds": [
+                            "sg-02b28f9cc9d6a0550"
+                        ],
+                        "subnetIds": [
+                            "subnet-03a56485d1dc776a1",
+                            "subnet-081edf27e9ddc3cc1"
+                        ]
+                    }
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":1800000000000,\"delete\":900000000000,\"update\":3600000000000}}",
+                    "arn": "arn:aws:eks:us-east-1:495775103319:cluster/smart-iot-eksCluster-9d70383",
+                    "certificateAuthority": {
+                        "data": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EWXpNREl6TXpnd09Gb1hEVEk1TURZeU56SXpNemd3T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS1F0CnQveVpwcTFhMXhLNDI5blZPb1prV2tjZ1BTVlFHdUxBNjdEUnNaQjN3Z1U2QXc4K3V0V0h4N3VEWHBOU2RzcFkKcFY0ekZWNXVFY3RmTnJnRlNtWFFvUlZHWDlCMjZsVVZnemFucno2ckxGYW95RmZkZW9PTDRNYjVzU0ZpcFFiQQpaMlRhcFVNMnJtKzUvNXE3ME5kUVplM3hWRFBjYkk0d20wandMVG5ZUktyWmVJUTRneXU4N2h6NXN2SXF6YWhNCjlJYW80VWFWODYra1VGNU9ST2N0NnNzVUl5UWd1N0puMXpJTitPS09NNTZNeWpLVUNmeTVwUzl0T00veXpGWEoKTFErWWZDZDI3d085cWc0Y0lkc1MrTEdDNFRHckxzWUIrNTRya3Q1TDU1cmlxUnZhbDNvK3dFMTVKOGpsTnJrUgpFOEhUTXUxOWw2a3dtVTBubDcwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFcy9zVFZvbkMzL1NJOUVIZEt1cURkSzJSVUwKNktIeS94TkpGTGdjZTFnUHdyMjFCc3loRklLbm9Mdyt5cVlEeWd4MFVkay9JOVd0bTJNclVpTUc1K0Jlc0VoTQpmNTB0VEpjSXg5NUxHUG5jaDF3ZVdwVTdtZUJjRUZyQlNQZUFDK0hnLzgyRkQ3M1ViU2NKb2hxSDgzME43UXBhCk1jUUNBK3NWSDJQSC9wMEZ1QVd0NWptRm1oY1JRb2Q5elh5UndSSWRlZ1dFUEFYTzZ3MEszWitBeDhicS9iclUKVmlDNWJ5VXppemQxZlNzNzZpZjM2M3BicFlZWFZBQ2hYSGk5WnlxMW4zeFB5bEhFR3cxOHF6VTkzbEUvam9lMwo3ZDFicU5PblNIUll1dzRyMEk5YzdqNkJRdTM2VVBRRTFnYXN3QXhzb29lWktKeDZGOWtCZDFZWVJaOD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+                    },
+                    "createdAt": "2019-06-30 23:31:13 +0000 UTC",
+                    "enabledClusterLogTypes": [],
+                    "endpoint": "https://CED5F70F2B791E9A98D43C9330630A18.gr7.us-east-1.eks.amazonaws.com",
+                    "id": "smart-iot-eksCluster-9d70383",
+                    "name": "smart-iot-eksCluster-9d70383",
+                    "platformVersion": "eks.2",
+                    "roleArn": "arn:aws:iam::495775103319:role/smart-iot-eksRole-role-620151c",
+                    "version": "1.12",
+                    "vpcConfig": {
+                        "endpointPrivateAccess": false,
+                        "endpointPublicAccess": true,
+                        "securityGroupIds": [
+                            "sg-02b28f9cc9d6a0550"
+                        ],
+                        "subnetIds": [
+                            "subnet-081edf27e9ddc3cc1",
+                            "subnet-03a56485d1dc776a1"
+                        ],
+                        "vpcId": "vpc-07f649c2d2fb5497f"
+                    }
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-4b490823",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-90eb1c99",
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-eksClusterSecurityGroup",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-0",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-0",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-1",
+                    "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-1"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "roleArn": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/role:Role::smart-iot-eksRole-role",
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-4b490823",
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$eks:index:ServiceRole$aws:iam/rolePolicyAttachment:RolePolicyAttachment::smart-iot-eksRole-90eb1c99"
+                    ],
+                    "vpcConfig": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-eksClusterSecurityGroup",
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-0",
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-0",
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/subnet:Subnet::VPC-public-1",
+                        "urn:pulumi:dev::aws-eks-pulumi::awsx:x:ec2:Vpc$awsx:x:ec2:Subnet$aws:ec2/routeTableAssociation:RouteTableAssociation::VPC-public-1"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$pulumi:providers:kubernetes::smart-iot-eks-k8s",
+                "custom": true,
+                "id": "f10ac70a-49e6-46c3-bc5e-2497559f243a",
+                "type": "pulumi:providers:kubernetes",
+                "inputs": {
+                    "kubeconfig": "{\"apiVersion\":\"v1\",\"clusters\":[{\"cluster\":{\"server\":\"https://CED5F70F2B791E9A98D43C9330630A18.gr7.us-east-1.eks.amazonaws.com\",\"certificate-authority-data\":\"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EWXpNREl6TXpnd09Gb1hEVEk1TURZeU56SXpNemd3T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS1F0CnQveVpwcTFhMXhLNDI5blZPb1prV2tjZ1BTVlFHdUxBNjdEUnNaQjN3Z1U2QXc4K3V0V0h4N3VEWHBOU2RzcFkKcFY0ekZWNXVFY3RmTnJnRlNtWFFvUlZHWDlCMjZsVVZnemFucno2ckxGYW95RmZkZW9PTDRNYjVzU0ZpcFFiQQpaMlRhcFVNMnJtKzUvNXE3ME5kUVplM3hWRFBjYkk0d20wandMVG5ZUktyWmVJUTRneXU4N2h6NXN2SXF6YWhNCjlJYW80VWFWODYra1VGNU9ST2N0NnNzVUl5UWd1N0puMXpJTitPS09NNTZNeWpLVUNmeTVwUzl0T00veXpGWEoKTFErWWZDZDI3d085cWc0Y0lkc1MrTEdDNFRHckxzWUIrNTRya3Q1TDU1cmlxUnZhbDNvK3dFMTVKOGpsTnJrUgpFOEhUTXUxOWw2a3dtVTBubDcwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFcy9zVFZvbkMzL1NJOUVIZEt1cURkSzJSVUwKNktIeS94TkpGTGdjZTFnUHdyMjFCc3loRklLbm9Mdyt5cVlEeWd4MFVkay9JOVd0bTJNclVpTUc1K0Jlc0VoTQpmNTB0VEpjSXg5NUxHUG5jaDF3ZVdwVTdtZUJjRUZyQlNQZUFDK0hnLzgyRkQ3M1ViU2NKb2hxSDgzME43UXBhCk1jUUNBK3NWSDJQSC9wMEZ1QVd0NWptRm1oY1JRb2Q5elh5UndSSWRlZ1dFUEFYTzZ3MEszWitBeDhicS9iclUKVmlDNWJ5VXppemQxZlNzNzZpZjM2M3BicFlZWFZBQ2hYSGk5WnlxMW4zeFB5bEhFR3cxOHF6VTkzbEUvam9lMwo3ZDFicU5PblNIUll1dzRyMEk5YzdqNkJRdTM2VVBRRTFnYXN3QXhzb29lWktKeDZGOWtCZDFZWVJaOD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=\"},\"name\":\"kubernetes\"}],\"contexts\":[{\"context\":{\"cluster\":\"kubernetes\",\"user\":\"aws\"},\"name\":\"aws\"}],\"current-context\":\"aws\",\"kind\":\"Config\",\"users\":[{\"name\":\"aws\",\"user\":{\"exec\":{\"apiVersion\":\"client.authentication.k8s.io/v1alpha1\",\"command\":\"aws-iam-authenticator\",\"args\":[\"token\",\"-i\",\"smart-iot-eksCluster-9d70383\"]}}}]}"
+                },
+                "outputs": {
+                    "kubeconfig": "{\"apiVersion\":\"v1\",\"clusters\":[{\"cluster\":{\"server\":\"https://CED5F70F2B791E9A98D43C9330630A18.gr7.us-east-1.eks.amazonaws.com\",\"certificate-authority-data\":\"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EWXpNREl6TXpnd09Gb1hEVEk1TURZeU56SXpNemd3T0Zvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBS1F0CnQveVpwcTFhMXhLNDI5blZPb1prV2tjZ1BTVlFHdUxBNjdEUnNaQjN3Z1U2QXc4K3V0V0h4N3VEWHBOU2RzcFkKcFY0ekZWNXVFY3RmTnJnRlNtWFFvUlZHWDlCMjZsVVZnemFucno2ckxGYW95RmZkZW9PTDRNYjVzU0ZpcFFiQQpaMlRhcFVNMnJtKzUvNXE3ME5kUVplM3hWRFBjYkk0d20wandMVG5ZUktyWmVJUTRneXU4N2h6NXN2SXF6YWhNCjlJYW80VWFWODYra1VGNU9ST2N0NnNzVUl5UWd1N0puMXpJTitPS09NNTZNeWpLVUNmeTVwUzl0T00veXpGWEoKTFErWWZDZDI3d085cWc0Y0lkc1MrTEdDNFRHckxzWUIrNTRya3Q1TDU1cmlxUnZhbDNvK3dFMTVKOGpsTnJrUgpFOEhUTXUxOWw2a3dtVTBubDcwQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFFcy9zVFZvbkMzL1NJOUVIZEt1cURkSzJSVUwKNktIeS94TkpGTGdjZTFnUHdyMjFCc3loRklLbm9Mdyt5cVlEeWd4MFVkay9JOVd0bTJNclVpTUc1K0Jlc0VoTQpmNTB0VEpjSXg5NUxHUG5jaDF3ZVdwVTdtZUJjRUZyQlNQZUFDK0hnLzgyRkQ3M1ViU2NKb2hxSDgzME43UXBhCk1jUUNBK3NWSDJQSC9wMEZ1QVd0NWptRm1oY1JRb2Q5elh5UndSSWRlZ1dFUEFYTzZ3MEszWitBeDhicS9iclUKVmlDNWJ5VXppemQxZlNzNzZpZjM2M3BicFlZWFZBQ2hYSGk5WnlxMW4zeFB5bEhFR3cxOHF6VTkzbEUvam9lMwo3ZDFicU5PblNIUll1dzRyMEk5YzdqNkJRdTM2VVBRRTFnYXN3QXhzb29lWktKeDZGOWtCZDFZWVJaOD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=\"},\"name\":\"kubernetes\"}],\"contexts\":[{\"context\":{\"cluster\":\"kubernetes\",\"user\":\"aws\"},\"name\":\"aws\"}],\"current-context\":\"aws\",\"kind\":\"Config\",\"users\":[{\"name\":\"aws\",\"user\":{\"exec\":{\"apiVersion\":\"client.authentication.k8s.io/v1alpha1\",\"command\":\"aws-iam-authenticator\",\"args\":[\"token\",\"-i\",\"smart-iot-eksCluster-9d70383\"]}}}]}"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:eks/cluster:Cluster::smart-iot-eksCluster"
+                ],
+                "propertyDependencies": {
+                    "kubeconfig": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:eks/cluster:Cluster::smart-iot-eksCluster"
+                    ]
+                }
+            },
+            {
+                "urn": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:ec2/securityGroup:SecurityGroup::smart-iot-nodeSecurityGroup",
+                "custom": true,
+                "id": "sg-0452d9bb33d87c30e",
+                "type": "aws:ec2/securityGroup:SecurityGroup",
+                "inputs": {
+                    "__defaults": [
+                        "name"
+                    ],
+                    "description": "Managed by Pulumi",
+                    "name": "smart-iot-nodeSecurityGroup-6c338a1",
+                    "revokeRulesOnDelete": true,
+                    "tags": {
+                        "Name": "smart-iot-nodeSecurityGroup",
+                        "__defaults": [],
+                        "kubernetes.io/cluster/smart-iot-eksCluster-9d70383": "owned"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "outputs": {
+                    "__meta": "{\"e2bfb730-ecaa-11e6-8f88-34363bc7c4c0\":{\"create\":600000000000,\"delete\":600000000000},\"schema_version\":\"1\"}",
+                    "arn": "arn:aws:ec2:us-east-1:495775103319:security-group/sg-0452d9bb33d87c30e",
+                    "description": "Managed by Pulumi",
+                    "egress": [],
+                    "id": "sg-0452d9bb33d87c30e",
+                    "ingress": [],
+                    "name": "smart-iot-nodeSecurityGroup-6c338a1",
+                    "ownerId": "495775103319",
+                    "revokeRulesOnDelete": true,
+                    "tags": {
+                        "Name": "smart-iot-nodeSecurityGroup",
+                        "kubernetes.io/cluster/smart-iot-eksCluster-9d70383": "owned"
+                    },
+                    "vpcId": "vpc-07f649c2d2fb5497f"
+                },
+                "parent": "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster::smart-iot",
+                "dependencies": [
+                    "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:eks/cluster:Cluster::smart-iot-eksCluster",
+                    "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                ],
+                "provider": "urn:pulumi:dev::aws-eks-pulumi::pulumi:providers:aws::default::8941b972-c878-4d6b-8832-b14d035d6ef9",
+                "propertyDependencies": {
+                    "description": null,
+                    "revokeRulesOnDelete": null,
+                    "tags": [
+                        "urn:pulumi:dev::aws-eks-pulumi::eks:index:Cluster$aws:eks/cluster:Cluster::smart-iot-eksCluster"
+                    ],
+                    "vpcId": [
+                        "urn:pulumi:dev::aws-eks-pulumi::aws:ec2/vpc:Vpc::VPC"
+                    ]
+                }
+            }
+        ],
+        "pending_operations": []
+    }
+}
