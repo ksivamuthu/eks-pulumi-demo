@@ -1,0 +1,233 @@
+[
+    {
+        "id": "82a4060e.8f59a8",
+        "type": "twitter in",
+        "z": "18c25e39.166fba",
+        "twitter": "",
+        "tags": "#nasscom_ILF",
+        "user": "false",
+        "name": "",
+        "topic": "tweets",
+        "inputs": 0,
+        "x": 155.5,
+        "y": 117,
+        "wires": [
+            [
+                "1dc2a18e.b99586"
+            ]
+        ]
+    },
+    {
+        "id": "1dc2a18e.b99586",
+        "type": "function",
+        "z": "18c25e39.166fba",
+        "name": "extract pic url from tweet",
+        "func": "msg.payload=msg.tweet.entities.media[0].media_url;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 438.5,
+        "y": 119.75,
+        "wires": [
+            [
+                "d79d8c6d.34d5d8"
+            ]
+        ]
+    },
+    {
+        "id": "d79d8c6d.34d5d8",
+        "type": "visual-recognition-v3",
+        "z": "18c25e39.166fba",
+        "name": "",
+        "apikey": "dd47b6c517ffadd74516f5fced74b6e0efee66ae",
+        "image-feature": "classifyImage",
+        "lang": "en",
+        "x": 299,
+        "y": 279,
+        "wires": [
+            [
+                "1583caec.5bd60d",
+                "240927a8.7f5b8"
+            ]
+        ]
+    },
+    {
+        "id": "8d7a1913.7f132",
+        "type": "watson-text-to-speech",
+        "z": "18c25e39.166fba",
+        "name": "",
+        "lang": "en-US",
+        "langhidden": "en-US",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "NoCustomisationSetting",
+        "voice": "en-US_MichaelVoice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "w1QhRP6rlswm",
+        "x": 410,
+        "y": 453,
+        "wires": [
+            [
+                "c19312e.0bc28f"
+            ]
+        ]
+    },
+    {
+        "id": "fa87213.53ac56",
+        "type": "file",
+        "z": "18c25e39.166fba",
+        "name": "",
+        "filename": "/Users/romeokienzler/Downloads/test.wav",
+        "appendNewline": false,
+        "createDir": false,
+        "overwriteFile": "true",
+        "x": 740.5,
+        "y": 448.25,
+        "wires": []
+    },
+    {
+        "id": "1583caec.5bd60d",
+        "type": "function",
+        "z": "18c25e39.166fba",
+        "name": "send to sensehat on Pi",
+        "func": "msg.payload = msg.result.images[0].classifiers[0].classes[0].class;\nmsg.payload = \"I think this is a \"+ msg.payload;\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 172.5,
+        "y": 505.75,
+        "wires": [
+            [
+                "8d7a1913.7f132",
+                "c59932ef.610038",
+                "b46966e3.80d4c8"
+            ]
+        ]
+    },
+    {
+        "id": "c19312e.0bc28f",
+        "type": "function",
+        "z": "18c25e39.166fba",
+        "name": "shuffle",
+        "func": "msg.payload=msg.speech;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 526.5,
+        "y": 374.75,
+        "wires": [
+            [
+                "fa87213.53ac56"
+            ]
+        ]
+    },
+    {
+        "id": "9de6ba3d.70dfe",
+        "type": "exec",
+        "z": "18c25e39.166fba",
+        "command": " /Applications/VLC.app/Contents/MacOS/VLC /Users/romeokienzler/Downloads/test.wav -I rc &",
+        "addpay": false,
+        "append": "",
+        "useSpawn": true,
+        "timer": "",
+        "name": "play audio on mac using VLC",
+        "x": 548.5,
+        "y": 601.25,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c59932ef.610038",
+        "type": "delay",
+        "z": "18c25e39.166fba",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 272.5,
+        "y": 605.75,
+        "wires": [
+            [
+                "9de6ba3d.70dfe"
+            ]
+        ]
+    },
+    {
+        "id": "b46966e3.80d4c8",
+        "type": "wiotp out",
+        "z": "18c25e39.166fba",
+        "authType": "d",
+        "qs": "false",
+        "qsDeviceId": "",
+        "deviceKey": "e798bd8d.af88b8",
+        "deviceType": "",
+        "deviceId": "",
+        "event": "command",
+        "format": "json",
+        "name": "",
+        "x": 390.5,
+        "y": 503.5,
+        "wires": []
+    },
+    {
+        "id": "240927a8.7f5b8",
+        "type": "function",
+        "z": "18c25e39.166fba",
+        "name": "generate message from detected image",
+        "func": "msg.payload = msg.result.images[0].classifiers[0].classes[0].class;\nmsg.payload = \"@IBMWatson just saw a \"+ msg.payload+\" #NASSCOM_ILF #Mumbai @IBMIoT #IBMAoT #TECCR @romeokienzler @jeffreydare\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 648,
+        "y": 282,
+        "wires": [
+            [
+                "fbae8798.afa1c"
+            ]
+        ]
+    },
+    {
+        "id": "fbae8798.afa1c",
+        "type": "twitter out",
+        "z": "18c25e39.166fba",
+        "twitter": "",
+        "name": "Tweet",
+        "x": 769.5,
+        "y": 146,
+        "wires": []
+    },
+    {
+        "id": "d76d12af.2f11a",
+        "type": "inject",
+        "z": "18c25e39.166fba",
+        "name": "test",
+        "topic": "",
+        "payload": "https://pbs.twimg.com/media/C4uWa4mXUBIOhbT.jpg",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 116.5,
+        "y": 332.25,
+        "wires": [
+            [
+                "d79d8c6d.34d5d8"
+            ]
+        ]
+    },
+    {
+        "id": "e798bd8d.af88b8",
+        "type": "wiotp-credentials",
+        "z": "",
+        "name": "",
+        "org": "po8gxy",
+        "devType": "lappy",
+        "devId": "mylappy"
+    }
+]
