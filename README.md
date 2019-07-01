@@ -1,6 +1,10 @@
-# AWS EKS Pulumi Infrastructure Demo
+# AWS EKS Infrastructure & Node RED deployment using Pulumi
 
-- [AWS EKS Pulumi Infrastructure Demo](#AWS-EKS-Pulumi-Infrastructure-Demo)
+[![Deploy](https://get.pulumi.com/new/button.svg)](https://app.pulumi.com/new)
+
+## Table of Contents
+- [AWS EKS Infrastructure & Node RED deployment using Pulumi](#AWS-EKS-Infrastructure--Node-RED-deployment-using-Pulumi)
+  - [Table of Contents](#Table-of-Contents)
   - [Overview](#Overview)
   - [Getting Started](#Getting-Started)
     - [Install Pulumi CLI](#Install-Pulumi-CLI)
@@ -136,6 +140,20 @@ Node-RED is a programming tool for wiring together hardware devices, APIs, and o
 Node-RED helm chart ( not maintained by node-red )  is available at helm charts stable repository.
 
 ```ts
+const chartOpts = {
+    repo: 'stable',
+    chart: 'node-red',
+    values: {
+        config: {
+            timezone: 'America/New_York'
+        },
+        ingress: {
+            enabled: true,
+            hosts: ['*.elb.amazonaws.com']
+        }
+    }
+};
+
 const nodeRed = new k8s.helm.v2.Chart('node-red', chartOpts, resourceOptions);
 ```
 

@@ -133,6 +133,20 @@ Node-RED is a programming tool for wiring together hardware devices, APIs, and o
 Node-RED helm chart ( not maintained by node-red )  is available at helm charts stable repository.
 
 ```ts
+const chartOpts = {
+    repo: 'stable',
+    chart: 'node-red',
+    values: {
+        config: {
+            timezone: 'America/New_York'
+        },
+        ingress: {
+            enabled: true,
+            hosts: ['*.elb.amazonaws.com']
+        }
+    }
+};
+
 const nodeRed = new k8s.helm.v2.Chart('node-red', chartOpts, resourceOptions);
 ```
 
